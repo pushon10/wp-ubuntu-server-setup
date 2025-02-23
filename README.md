@@ -17,7 +17,17 @@ With just one command, you'll have a fully functional WordPress site up and runn
 ## Prerequisites  
 
 - You should be **SSH'ed into your instance** with inbound rules that allow for **port 80 (HTTP)** and **port 22 (SSH)**.  
-- This script was tested on an **Ubuntu AMI**.  
+- This script was tested on an **Ubuntu AMI**.
+
+---
+
+## Instructions
+- Navigate to the home directory with 'cd ~' (optional but recommended for organisation)
+- Install 'git' in you haven't already with 'sudo apt update && sudo apt install -y git'
+- Clone this repo with 'git clone https://github.com/pushon10/wp-ubuntu-server-setup.git'
+- Navigate to the directory for the repo with 'cd wp-ubuntu-server-setup'
+- Make the script executable with 'chmod +x wordpress_deployment.sh'
+- Run the script with 'sudo ./wordpress_deployment.sh'
 
 ---
 
