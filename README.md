@@ -9,7 +9,7 @@ With just one command, you'll have a fully functional WordPress site up and runn
 ## Features  
 
 - **One-command setup** – Deploy WordPress effortlessly  
-- **Optimized for speed** – No manual steps required  
+- **Optimised for speed** – No manual steps required  
 - **Includes Apache & MySQL setup** – Secure and production-ready  
 
 ---
