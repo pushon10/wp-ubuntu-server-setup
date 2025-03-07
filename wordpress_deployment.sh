@@ -64,17 +64,31 @@ sed -i "s/username_here/$DB_USER/" $WP_PATH/wp-config.php
 sed -i "s/password_here/$DB_PASS/" $WP_PATH/wp-config.php
 
 echo "Setting up Apache for WordPress..."
+
+# Prompt user for the domain name and store it in a variable
+read -p "Please enter your domain name (e.g., example.com): " DOMAIN_NAME
+
+# Check if the user provided a domain name; if not, set a default or exit
+if [ -z "$DOMAIN_NAME" ]; then
+    echo "No domain name provided. Using 'example.com' as default."
+    DOMAIN_NAME="example.com"
+fi
+
+# Write the VirtualHost configuration with the provided domain name
 cat <<EOF > $APACHE_CONF
 <VirtualHost *:80>
-    ServerAdmin admin@yourdomain.com
+    ServerAdmin admin@$DOMAIN_NAME
+    ServerName $DOMAIN_NAME
     DocumentRoot /var/www/html/wordpress
     <Directory /var/www/html/wordpress>
         AllowOverride All
     </Directory>
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 EOF
+
+echo "Apache configuration written to $APACHE_CONF with domain $DOMAIN_NAME"
 
 echo "Enabling Apache site and mod_rewrite..."
 a2ensite wordpress
